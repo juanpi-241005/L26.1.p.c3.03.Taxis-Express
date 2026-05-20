@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Express - Control de Clientes</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <section id="empresa">
+        <h2>Taxi Express</h2>
+        <button id="empresa_btNuevoCliente">Nuevo Cliente</button>
+        
+        <!-- Historial de Clientes Registrados -->
+        <h3>Listado de Clientes</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo de Servicio</th>
+                    <th>Edad</th>
+                    <th>Sexo</th>
+                </tr>
+            </thead>
+            <tbody id="empresa_tbCliente"></tbody>
+        </table>
+
+        <br>
+        
+        <div>
+            Cantidad de Mujeres Mayores: <span id="empresa_lblcantidadMujeresMayores">0</span>
+        </div>
+        <div>
+            Cliente de Menor Edad: <span id="empresa_lblclienteMenorEdad">0</span>
+        </div>
+        <div>
+            Promedio de Edad: <span id="empresa_lblpromedioEdad">0</span>
+        </div>
+        <div>
+            Cantidad de Clientes: <span id="empresa_lblcantidadClientes">0</span>
+        </div>
+        <div>
+            Último Nombre: <span id="empresa_lblNombreUltimo"></span>
+        </div>
+        <div>
+            Nombres Superiores al Último: <span id="empresa_lblNombresSuperioresAlUltimo"></span>
+        </div>
+        <div>
+            Metodos de Array usados: <span id="empresa_lblProcesosUsados"></span>
+        </div>
+    </section>
+
+    <!-- FORMULARIO EMERGENTE PARA PROCESAR UN CLIENTE -->
+    <section id="Cliente" hidden style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; width: 300px;">
+        <h5>Procesar Cliente</h5>
+        <div>
+            <label>Nombre:
+                <input type="text" id="Cliente_inNombre" placeholder="Nombre del Cliente">
+            </label>
+        </div>
+        <div>
+            <label>Tipo de Servicio:
+                <input type="number" id="Cliente_inTipoServicio" placeholder="1 ó 2">
+            </label>
+        </div>
+        <div>
+            <label>Edad:
+                <input type="number" id="Cliente_inEdad" placeholder="ej.20">
+            </label>
+        </div>
+        <div>
+            <label>Sexo (1.Masculino 2.Femenino):
+                <input type="number" id="Cliente_inSexo" placeholder="1 ó 2">
+            </label>
+        </div>
+        <br>
+        <button id="Cliente_btAceptar">Aceptar</button>
+        <button id="Cliente_btCancelar">Cancelar</button>
+    </section>
+
+   
+    <script type="module">
+        import Cl_cEmpresa from "./dist/controllers/Cl_cEmpresa.js";
+        import Cl_cCliente from "./dist/controllers/Cl_cCliente.js";
+        
+        import Cl_vEmpresa from "./dist/views/Cl_vEmpresa.js";
+        import Cl_vCliente from "./dist/views/Cl_vCliente.js";
+
+        const vistaEmpresa = new Cl_vEmpresa();
+        const vistaCliente = new Cl_vCliente();
+
+        
+        const controladorCliente = new Cl_cCliente(vistaCliente);
+        new Cl_cEmpresa(vistaEmpresa, controladorCliente);
+    </script>
+</body>
+</html>
